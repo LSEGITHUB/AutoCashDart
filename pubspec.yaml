@@ -1,0 +1,14 @@
+name: autocash
+description:  Dart & Flutter SDK for AutoCash payment system (VF-Cash, OKX, Binance).
+version: 1.0.3
+homepage: https://github.com/lsegithub/autocashdart
+repository: https://github.com/lsegithub/autocashdart
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  http: ^1.1.0
+
+dev_dependencies:
+  lints: ^3.0.0
