@@ -150,7 +150,7 @@ autoCash.checkBinance(
 ## نتيجة التحقق
 
 كائن PaymentResult يحتوي على:
-```json
+```dart
 result.status  
 result.message  
 result.key  
