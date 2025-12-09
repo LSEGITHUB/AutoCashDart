@@ -18,73 +18,77 @@
 
 في ملف pubspec.yaml:
 
+```yaml
 dependencies:
-  http: ^1.1.0
-
+  autocash:
+```
 ---
 
 ## التثبيت
 
-بعد إضافة ملف `autocash.dart` إلى مشروعك، قم باستيراده:
+قم بتنفيذ الامر التالى:
 
-import 'autocash.dart';
-
+```bash
+dart pub add autocash
+```
 ---
 
 ## التهيئة
+```dart
+import 'package:autocash/autocash.dart';
 
 final autoCash = AutoCash(
   userId: 'YOUR_USER_ID',
   panelId: 'YOUR_PANEL_ID',
 );
-
+```
 ---
 
 ## الحصول على معلومات لوحة التحكم
 
 باستخدام async/await:
-
+```dart
 final info = await autoCash.getPanelInfo();
 
 print(info.number);
 print(info.rate);
 print(info.currency);
 print(info.method);
-
+```
 أو باستخدام then:
-
+```dart
 autoCash.getPanelInfo().then((info) {
   print(info);
 });
-
+```
 ---
 
 ## إنشاء روابط الدفع
 
 ### VF-Cash
-
+```dart
 final paymentLink = autoCash.vfcashLink(
   extra: 'username',
 );
-
+```
 ---
 
 ### OKX
-
+```dart
 final okxLink = autoCash.okxLink(
   100,
   extra: 'username',
 );
-
+```
 ---
 
 ### Binance
-
+```dart
 final binanceLink = autoCash.binanceLink(
   100,
   extra: 'username',
 );
-
+```
 ---
 
 ## استخدام extra
@@ -100,15 +104,15 @@ final binanceLink = autoCash.binanceLink(
 ---
 
 ## التحقق من عملية VF-Cash
-
+```dart
 final result = await autoCash.checkVFCash(
   phone: '01012345678',
   amount: 100,
   extra: 'username',
 );
-
+```
 أو باستخدام then:
-
+```dart
 autoCash.checkVFCash(
   phone: '01012345678',
   amount: 100,
@@ -116,11 +120,11 @@ autoCash.checkVFCash(
 ).then((result) {
   print(result);
 });
-
+```
 ---
 
 ## التحقق من عملية OKX
-
+```dart
 autoCash.checkOKX(
   txid: 'TX_ID',
   amount: 100,
@@ -128,11 +132,11 @@ autoCash.checkOKX(
 ).then((result) {
   print(result);
 });
-
+```
 ---
 
 ## التحقق من عملية Binance
-
+```dart
 autoCash.checkBinance(
   txid: 'TX_ID',
   amount: 100,
@@ -140,45 +144,45 @@ autoCash.checkBinance(
 ).then((result) {
   print(result);
 });
-
+```
 ---
 
 ## نتيجة التحقق
 
 كائن PaymentResult يحتوي على:
-
+```json
 result.status  
 result.message  
 result.key  
-
+```
 مثال:
-
+```json
 {
   "status": "success",
   "message": "تم إكمال عملية الدفع بنجاح",
   "key": "TRANSACTION_KEY"
 }
-
+```
 ---
 
 ## إعادة التوجيه (Redirect)
 
 لإخفاء رابط الدفع الحقيقي:
-
+```dart
 final redirectLink = autoCash.redirect(
   paymentLink,
 );
-
+```
 ---
 
 ## معالجة الأخطاء
-
+```dart
 try {
   await autoCash.getPanelInfo();
 } catch (e) {
   print(e);
 }
-
+```
 ---
 
 ## ملاحظات مهمة
